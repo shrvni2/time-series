@@ -1,113 +1,105 @@
-# Time Series Analysis of CO2 Concentration
-> This project performs an in-depth analysis of the CO2 concentration time series data, providing valuable insights into patterns, trends, and correlations using statistical models and machine learning algorithms.
+# Time Series Analysis of CO2 Concentration and Catfish Data
+> This project performs an in-depth analysis of time series data related to CO2 concentration and catfish, providing valuable insights into patterns, trends, and correlations using statistical models and machine learning algorithms.
 
 ## 📋 Table of Contents
-1. [Project Overview](#project-overview)
-2. [Key Features](#key-features)
-3. [Dataset Description](#dataset-description)
-4. [Methodology / Approach](#methodology--approach)
-5. [Tech Stack & Libraries](#tech-stack--libraries)
-6. [Project Structure](#project-structure)
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Files & Structure](#files--structure)
+4. [Dataset / Data](#dataset--data)
+5. [How It Works](#how-it-works)
+6. [Tech Stack](#tech-stack)
 7. [Installation](#installation)
 8. [Usage](#usage)
-9. [Results & Outputs](#results--outputs)
+9. [Results](#results)
 10. [Contributing](#contributing)
 11. [License](#license)
 
-## 📖 Project Overview
-The Time Series Analysis of CO2 Concentration project is designed to analyze and understand the dynamics of CO2 concentration over time. The project uses a combination of data preprocessing, visualization, and statistical modeling to achieve its objectives. The analysis is performed on a CO2 concentration dataset, which is first preprocessed to create a datetime index, and then visualized to identify patterns and trends. The project also employs statistical models, such as seasonal decomposition and the Mann-Kendall trend test, to analyze the data and identify correlations.
+## 📖 Overview
+This project is designed to analyze time series data from two distinct domains: CO2 concentration and catfish. The `co2.ipynb` notebook focuses on the analysis of CO2 concentration data, where it reads the data from an Excel file (`CO2 Concentration.xls`), converts the `Year` and `Month` columns into a `Date` column, and drops the `Year` and `Month` columns. The `Catfish.ipynb` notebook, on the other hand, analyzes catfish-related data, where it reads the data from a CSV file (`catfish.csv`), converts the `Date` column into datetime format, and sets it as the index. Both notebooks utilize libraries such as `pandas`, `numpy`, `matplotlib`, and `seaborn` for data manipulation and visualization.
 
-The project's methodology is based on a combination of exploratory data analysis, statistical modeling, and machine learning techniques. The analysis is performed using Python, with libraries such as pandas, numpy, and matplotlib used for data manipulation and visualization. The project's results provide a comprehensive understanding of the CO2 concentration time series data, highlighting the importance of continued monitoring and study of this critical environmental indicator.
+The primary goal of this project is to decompose the time series data into its constituent components, including trend, seasonality, and residuals. This decomposition is performed using the `seasonal_decompose` function from the `statsmodels` library. By understanding these components, the project aims to provide insights into the underlying patterns and correlations in the data. For example, the `Catfish.ipynb` notebook uses `sns.lineplot` to visualize the data, while the `co2.ipynb` notebook uses `matplotlib` to plot the data.
 
-The CO2 concentration dataset used in this project is analyzed using various statistical models and machine learning algorithms to identify patterns, trends, and correlations. The analysis is performed using the CO2.ipynb notebook, which contains the code for data preprocessing, visualization, and statistical modeling. The notebook uses libraries such as pandas, numpy, and matplotlib for data manipulation and visualization, and pymannkendall for performing the Mann-Kendall trend test.
+The project's methodology involves a combination of exploratory data analysis, data preprocessing, and statistical modeling. The `Catfish.ipynb` notebook, for instance, performs exploratory data analysis by displaying the first few rows of the data using `df.head()` and the last few rows using `df.tail()`. The notebook also displays the shape of the data using `df.shape`. Similarly, the `co2.ipynb` notebook performs data preprocessing by converting the `Date` column into datetime format using `pd.to_datetime`.
 
-The project's findings can be used to inform environmental policies, predict future CO2 concentration trends, and identify areas for further research. The analysis provides a valuable contribution to the field of environmental science, highlighting the importance of data-driven approaches to understanding complex environmental phenomena.
+## ✨ Features
+The following features are implemented in this project:
+* Decomposition of time series data into trend, seasonality, and residuals using the `seasonal_decompose` function
+* Data visualization using `matplotlib` and `seaborn` libraries
+* Exploratory data analysis using `df.head()`, `df.tail()`, and `df.shape`
+* Data preprocessing using `pd.to_datetime` and `df.set_index`
+* Analysis of CO2 concentration data using the `co2.ipynb` notebook
+* Analysis of catfish-related data using the `Catfish.ipynb` notebook
+* Utilization of statistical models and machine learning algorithms to identify patterns and correlations in the data
 
-## ✨ Key Features
-* **Data Preprocessing**: The project performs data preprocessing to create a datetime index and prepare the data for analysis.
-* **Data Visualization**: The project uses various visualization techniques, such as line plots and seasonal decomposition plots, to identify patterns and trends in the data.
-* **Statistical Modeling**: The project employs statistical models, such as seasonal decomposition and the Mann-Kendall trend test, to analyze the data and identify correlations.
-* **Machine Learning**: The project uses machine learning algorithms to train and test models for predicting future CO2 concentration trends.
-* **Data Split**: The project splits the data into training and testing sets for model evaluation and hyperparameter tuning.
+## 📁 Files & Structure
+The project consists of three files:
+* `Catfish.ipynb`: This notebook analyzes catfish-related data, performs exploratory data analysis, and decomposes the time series data into its constituent components.
+* `co2.ipynb`: This notebook analyzes CO2 concentration data, performs data preprocessing, and visualizes the data using `matplotlib` and `seaborn`.
+* `README.md`: This file provides an overview of the project, its features, and its structure.
 
-## 🗂️ Dataset Description
-The CO2 concentration dataset used in this project contains the following columns:
-* **Year**: The year of the observation
-* **Month**: The month of the observation
-* **CO2 Concentration**: The CO2 concentration value for the observation
-The dataset contains 120 records, with each record representing a monthly observation of CO2 concentration. The data is sourced from a CO2 Concentration dataset and is used to train and test the models.
+## 🗂️ Dataset / Data
+The project uses two datasets:
+* `catfish.csv`: This dataset contains catfish-related data, with columns such as `Date` and other variables.
+* `CO2 Concentration.xls`: This dataset contains CO2 concentration data, with columns such as `Year`, `Month`, and `CO2 Concentration`.
 
-## 🧠 Methodology / Approach
-The project's methodology is based on a combination of exploratory data analysis, statistical modeling, and machine learning techniques. The analysis is performed using the following steps:
-1. Data preprocessing: The data is preprocessed to create a datetime index and prepare it for analysis.
-2. Data visualization: The data is visualized using various techniques, such as line plots and seasonal decomposition plots, to identify patterns and trends.
-3. Statistical modeling: The data is analyzed using statistical models, such as seasonal decomposition and the Mann-Kendall trend test, to identify correlations.
-4. Machine learning: The data is used to train and test models for predicting future CO2 concentration trends.
-5. Model evaluation: The models are evaluated using metrics such as mean squared error and R-squared.
+## 🧠 How It Works
+The project's workflow involves the following steps:
+1. Data import: The `Catfish.ipynb` notebook imports the catfish-related data from the `catfish.csv` file, while the `co2.ipynb` notebook imports the CO2 concentration data from the `CO2 Concentration.xls` file.
+2. Data preprocessing: The notebooks perform data preprocessing, such as converting the `Date` column into datetime format and setting it as the index.
+3. Exploratory data analysis: The notebooks perform exploratory data analysis using `df.head()`, `df.tail()`, and `df.shape`.
+4. Decomposition: The notebooks decompose the time series data into its constituent components using the `seasonal_decompose` function.
+5. Visualization: The notebooks visualize the data using `matplotlib` and `seaborn`.
 
-## 🛠️ Tech Stack & Libraries
-The project uses the following libraries and technologies:
-* **pandas**: For data manipulation and analysis
-* **numpy**: For numerical computations
-* **matplotlib**: For data visualization
-* **pymannkendall**: For performing the Mann-Kendall trend test
-* **scikit-learn**: For machine learning model implementation and evaluation
-
-## 📁 Project Structure
-The project structure is as follows:
-* **README.md**: This file, containing the project description and documentation
-* **co2.ipynb**: A Jupyter notebook containing the code for data preprocessing, visualization, and statistical modeling
-* **CO2 Concentration.xls**: The CO2 concentration dataset used in the project
+## 🛠️ Tech Stack
+The project utilizes the following libraries and tools:
+* `pandas` for data manipulation and analysis
+* `numpy` for numerical computations
+* `matplotlib` for data visualization
+* `seaborn` for data visualization
+* `statsmodels` for statistical modeling
+* `seasonal_decompose` function for decomposing time series data
 
 ## ⚙️ Installation
+To install the required libraries, run the following command:
 ```bash
-pip install pandas
-pip install numpy
-pip install matplotlib
-pip install pymannkendall
-pip install scikit-learn
+pip install pandas numpy matplotlib seaborn statsmodels
 ```
 
 ## 🚀 Usage
+To use the project, simply run the `Catfish.ipynb` and `co2.ipynb` notebooks. For example:
 ```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
-import pymannkendall as mk
+import seaborn as sns
 
-# Load the dataset
-data = pd.read_csv('CO2 Concentration.xls')
+# Load the catfish-related data
+df = pd.read_csv('catfish.csv')
 
-# Preprocess the data
-data['Date'] = data['Year'].astype(str) + '-' + data['Month'].astype(str)
-data['Date'] = pd.to_datetime(data['Date'])
-data = data.set_index('Date')
+# Convert the Date column into datetime format
+df['Date'] = pd.to_datetime(df['Date'])
+
+# Set the Date column as the index
+df = df.set_index('Date')
+
+# Decompose the time series data
+decomposition = seasonal_decompose(df, model='additive')
 
 # Visualize the data
-plt.figure(figsize=(12,6))
-plt.plot(data['CO2 Concentration'], label='CO2 Concentration')
-plt.title('Monthly CO2 Concentration Over Time')
+sns.lineplot(df)
+plt.ylabel("Date")
 plt.show()
-
-# Perform statistical modeling
-result = seasonal_decompose(data['CO2 Concentration'], model='additive', period=12)
-result.plot()
-plt.show()
-
-# Perform Mann-Kendall trend test
-mk.original_test(data['CO2 Concentration'])
 ```
 
-## 📊 Results & Outputs
-The project produces the following outputs:
-* **Data visualizations**: Line plots and seasonal decomposition plots of the CO2 concentration data
-* **Statistical modeling results**: Results of the seasonal decomposition and Mann-Kendall trend test
-* **Machine learning model predictions**: Predictions of future CO2 concentration trends using trained models
-* **Model evaluation metrics**: Metrics such as mean squared error and R-squared for evaluating model performance
+## 📊 Results
+The project produces the following results:
+* Decomposed time series data into trend, seasonality, and residuals
+* Visualizations of the data using `matplotlib` and `seaborn`
+* Insights into the underlying patterns and correlations in the data
 
 ## 🤝 Contributing
-Contributions to this project are welcome. To contribute, please fork the repository and submit a pull request with your changes.
+Contributions to the project are welcome. To contribute, please fork the repository, make the necessary changes, and submit a pull request.
 
 ## 📄 License
-This project is licensed under the MIT License. See LICENSE for details.
+The project is licensed under the MIT License.
